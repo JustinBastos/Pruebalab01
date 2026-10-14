@@ -23,3 +23,11 @@ def recibir_dano(self, cantidad):
         self.vida = self.vida + cantidad
         if self.vida > self.vida_max:
             self.vida = self.vida_max
+
+
+
+def sumar_puntos(self, cantidad):
+        self.puntos = self.puntos + cantidad
+
+    def esta_vivo(self):
+        return self.vida > 0
