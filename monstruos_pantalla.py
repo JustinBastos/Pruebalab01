@@ -22,13 +22,16 @@ class monstruos_pantalla:
             if elemento.r == r and elemento.c == c:
                 return False
 
-        
-        for monstruo in self.monstruos:
-            if monstruo.r == r and monstruo.c == c:
-                return False
+            for monstruo in self.monstruos:
+                if monstruo.r == r and monstruo.c == c:
+                     return False
 
-        
+        if self.jugador.r == r and self.jugador.c == c:
+             return True
+
         return True
+
+ 
 
     def mover_monstruos(self):
         for monstruo in self.monstruos:
