@@ -154,6 +154,10 @@ class monstruos_pantalla:
         print_at(
             fila_panel + 2,
             self.col_ini,
-            "Moverse (W=Arriba, S=Abajo, "
-            "A=Izquierda, D=Derecha, Q=Salir)"
+            "Instrucciones: " \
+            "W=Arriba, " \
+            "S=Abajo, "
+            "A=Izquierda, " \
+            "D=Derecha, " \
+            "Q=Salir"
         )
