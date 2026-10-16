@@ -1,7 +1,8 @@
 import random
 from colorama import Fore, Style
 from elemento_mapa import ElementoMapa
-from posicion import print_at, marco
+from posicion import print_at
+from class_01_04 import marco, limpiar
 
 # Laberinto de prueba (cada texto es una fila). Lo definitivo se acuerda con el grupo.
 mapa_base = ['░░░░░░░░░░',
