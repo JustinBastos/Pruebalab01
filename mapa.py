@@ -35,3 +35,25 @@ class Mapa:
                     return elemento
             return None
 
+        # Crea tesoros, pociones, trampas y monstruos
+        def cargar_objetos(self):
+            datos = [{'tipo': 'tesoro', 'simbolo': '$', 'color': Fore.YELLOW, 'cantidad': 5, 'valor': 50},
+                     {'tipo': 'pocion', 'simbolo': '+', 'color': Fore.GREEN, 'cantidad': 3, 'valor': 20},
+                     {'tipo': 'trampa', 'simbolo': 'X', 'color': Fore.MAGENTA, 'cantidad': 4, 'valor': 20},
+                     {'tipo': 'monstruo', 'simbolo': 'M', 'color': Fore.RED, 'cantidad': 4, 'valor': 0}]
+
+            for dato in datos:
+                for i in range(dato['cantidad']):
+                    libre = False
+                    while not libre:
+                        r = random.randint(self.fila_ini, self.fila_fin)
+                        c = random.randint(self.col_ini, self.col_fin)
+                        libre = self.posicion_libre(r, c)
+                        if r == self.jugador.r and c == self.jugador.c:
+                            libre = False
+                    nuevo = ElementoMapa(dato['tipo'], dato['simbolo'], dato['color'], r, c, dato['valor'])
+                    if dato['tipo'] == 'monstruo':
+                        self.monstruos.append(nuevo)
+                    else:
+                        self.elementos.append(nuevo)
+
