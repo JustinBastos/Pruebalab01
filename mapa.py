@@ -261,4 +261,37 @@ class Mapa:
             "D=Derecha, " \
             "Q=Salir"
         )
+
+    def juego_activo(self):
+        return self.activo and self.jugador.esta_vivo() and self.quedan_tesoros()
+
+    def ejecutar(self):
+        self.cargar_paredes()
+        self.cargar_objetos()
+        self.mensaje = "Bienvenido a la Mazmorra Perdida"
+
+        while self.juego_activo():
+            limpiar()
+            self.dibujar_mapa()
+            self.dibujar_panel()
+            tecla = leer_tecla()
+
+            if tecla == "Q":
+                self.activo = False
+            elif tecla not in ("W", "A", "S", "D"):
+                self.mensaje = "Tecla no válida"
+            else:
+                if self.mover_jugador(tecla):
+                    self.procesar_colision()
+                    if self.jugador.esta_vivo():
+                        self.mover_monstruos()
+
+        limpiar()
+        if not self.jugador.esta_vivo():
+            print("Perdiste")
+        elif not self.quedan_tesoros():
+            print("Ganaste")
+        else:
+            print("Saliste del juego")
+        print("Oro final:", self.jugador.puntos)
     
