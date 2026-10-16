@@ -1,0 +1,90 @@
+"""================================================================================================
+Institute....: Universidad Técnica Nacional
+Headquarters.: Pacífico
+Career.......: Tecnologías de Información
+Period.......: 3-2026
+Document.....: clase_01_04.py
+Goals........: Other example to use an external and local functions.
+Professor....: Jorge Ruiz (york)
+Student......:
+================================================================================================"""
+from posicion import *
+import os
+
+# import libraries for color control
+# you must install it first using sentence 'pip install colorama' on the terminal window or
+# install requirements.txt file
+from colorama import init, Fore, Back, Style
+
+# -------------------------------------------------------------------
+# Set local charset
+# -------------------------------------------------------------------
+import locale
+locale.setlocale(locale.LC_ALL, "es")
+
+
+# -------------------------------------------------------------------
+# Local functions
+# -------------------------------------------------------------------
+
+# Draw a frame on the console screen
+def marco(col1, fil1, col2, fil2):
+    for fl in range(fil1, fil2+1):
+        for cl in range(col1, col2+1):
+            if (fl == fil1) or (fl == fil2):
+                print_at(fl, cl, '═')
+            elif ((cl == col1) or (cl == col2)) and ((fl > fil1) or (fl < fil2)):
+                print_at(fl, cl, '║')
+
+            if (fl == fil1) and (cl == col1):
+                print_at(fl, cl, '╔')
+            elif (fl == fil1) and (cl == col2):
+                print_at(fl, cl, '╗')
+
+            if (fl == fil2) and (cl == col1):
+                print_at(fl, cl, '╚')
+            elif (fl == fil2) and (cl == col2):
+                print_at(fl, cl, '╝')
+
+
+# function to clean work area
+def limpiar():
+    for fl in range(6, 20):
+        for cl in range(2, 120):
+            print_at(fl, cl, ' ')
+
+
+# ------------------/ End the local functions /----------------------
+
+# -------------------------------------------------------------------
+# Main code
+# -------------------------------------------------------------------
+
+# Execute an external instruction from operative system to clean screen,
+# cls is a Windows instruction, if you work on Linux you must use
+# instruction clear
+os.system('cls')
+
+
+# initialize color management
+init()
+
+
+# Call the marco function with Lightblue foreground color
+print(Fore.LIGHTBLUE_EX)
+marco(1, 1, 120, 4)
+
+
+# Print text, using the position on screen  function
+print(Back.BLUE)
+print_at(2, 47, Fore.YELLOW + 'Universidad Técnica Nacional')
+print_at(3, 52, Fore.YELLOW + 'Sede del Pacífico')
+print(Back.BLACK)
+
+# Call the marco function with Lightblue foreground color again
+print(Fore.LIGHTBLUE_EX)
+marco(1, 5, 120, 20)
+limpiar()
+
+# color management on default
+init(autoreset=True)
