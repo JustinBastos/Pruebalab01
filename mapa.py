@@ -14,6 +14,8 @@ def leer_tecla():
     tecla = input("Moverse (W=Arriba, S=Abajo, A=Izquierda, D=Derecha, Q=Salir): ")
     return tecla.strip().upper()
 
+def limpiar():
+    print("\033[2J\033[H", end="")
 
 class Mapa:
     def __init__(self, jugador):
